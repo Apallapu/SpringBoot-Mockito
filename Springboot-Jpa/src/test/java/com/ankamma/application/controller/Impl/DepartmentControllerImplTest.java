@@ -57,11 +57,11 @@ public class DepartmentControllerImplTest {
 	public void createDepartMentTest() throws Exception {
 		DepartmentRequest departmentRequest = buildDepartmentRequest();
 		DepartmentResponse departmentResponse = buildDepartmentResponse();
-		when(this.departmentServiceImpl.createDepartMent(departmentRequest)).thenReturn(departmentResponse);
+		when(this.departmentServiceImpl.createDepartMent(Mockito.any())).thenReturn(departmentResponse);
 
 		mockMvc.perform(MockMvcRequestBuilders.post(URI).accept(MediaType.APPLICATION_JSON)
 				.content(getJson(departmentRequest)).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$[0].deptId").value(1));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.deptId").value(1));
 
 	}
 
